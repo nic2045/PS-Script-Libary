@@ -2,7 +2,7 @@ function Get-AzureLicenses {
     try{$AzureADCheck = (Get-AzureADTenantDetail).DirSyncEnabled}
     catch{}
     If ($AzureADCheck) {
-    echo "Connection to Azure established"
+    Write-Debug "Connection to Azure established"
     $connect = $true}
     else{
     return "No Azure Connect - Please connect to your Azure Tenant"
@@ -163,5 +163,5 @@ function Get-AzureLicenses {
             }
     return $LicenceStatus # | select Name, @{N="Zugewiesen";E={$_.ConsumedUnits}},  @{N="Frei";E={$($_.Free)}},  @{N="Gesamt";E={$_.Enabled}} | Sort-Object Name | Format-Table
     }
-    }
+}
     
