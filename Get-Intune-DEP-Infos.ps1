@@ -1,4 +1,4 @@
- $CMK_VERSION = "2.2.0i1"
+  $CMK_VERSION = "2.2.0i1"
 ## filename for timestamp
 if ($env:MK_CONFDIR ) {
 $MK_CONFDIR = $env:MK_CONFDIR
@@ -191,14 +191,6 @@ Param(
     } 
 ####################################################
 
-#if (!(Get-Module -ListAvailable -Name MSAL.PS)) {
-#Install-Module -Name MSAL.PS -Force
-#}
-
-if (!(Get-Module -ListAvailable -Name AzureAD)) {
-Install-Module -Name AzureAD -Force
-}
-
 if (!(Get-Module -ListAvailable -Name PSIntuneAuth)) {
 Install-Module -Name PSIntuneAuth 
 }
@@ -211,25 +203,25 @@ Install-Module -Name PSIntuneAuth
 $global:authToken = Get-MSIntuneAuthToken -TenantName $TenantID -ClientID $ClientID -ClientSecret $ClientSecret 
 
 
-
 ####################################################
 
 $APNS = Get-ApplePushNotificationCertificate
-$APNS
+#$APNS
 
 
 $DateTime = ([datetimeoffset]::Parse($APNS.expirationDateTime)).DateTime.DateTime
-Write-Host "Expiration Date Time:" $DateTime
+Write-Host "APNS: Expiration Date Time:" $DateTime
 
 $DEP = Get-DEPOnboardingSettings
-$DEP
+#$DEP
 
 $DateTime = ([datetimeoffset]::Parse($DEP.tokenExpirationDateTime)).DateTime.DateTime
-Write-Host "Expiration Date Time:" $DateTime
+Write-Host "DEP: Expiration Date Time:" $DateTime
 
 $VPP = Get-VPPToken
-$VPP 
+#$VPP 
 
 $DateTime = ([datetimeoffset]::Parse($VPP.expirationDateTime)).DateTime.DateTime
-Write-Host "Expiration Date Time:" $DateTime
+Write-Host "VPP: Expiration Date Time:" $DateTime
+ 
  
